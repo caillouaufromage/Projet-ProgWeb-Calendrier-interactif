@@ -1,0 +1,17 @@
+[
+    {
+        "id": "a",
+        "mdp": "b",
+        "role": "etudiant"
+    },
+    {
+        "id": "c",
+        "mdp": "d",
+        "role": "enseignant"
+    },
+    {
+        "id": "e",
+        "mdp": "f",
+        "role": "admin"
+    }
+]

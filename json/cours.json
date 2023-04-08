@@ -1,0 +1,66 @@
+[
+    {
+        "type" : "cours" ,
+        "matiere" : "ProgWeb" ,
+        "enseignant" : "Vernier" ,
+        "salle" : "Petit Amphi" ,
+        "jour" : "JEUDI",
+        "debutH" : 8 ,
+        "debutM" : 30 ,
+        "duree" : 4 ,
+        "groupe" : -1 ,
+        "couleur" : "#03fc41"
+
+    },
+    {
+        "type" : "cours" ,
+        "matiere" : "PFA" ,
+        "enseignant" : "Arrighi" ,
+        "salle" : "Grand Amphi" ,
+        "jour" : "LUNDI",
+        "debutH" : 10 ,
+        "debutM" : 45 ,
+        "duree" : 8 ,
+        "groupe" : 2 ,
+        "couleur" : "#d303fc"
+
+    },
+
+    {
+        "type" : "cours" ,
+        "matiere" : "PFA" ,
+        "enseignant" : "Arrighi" ,
+        "salle" : "Grand Amphi" ,
+        "jour" : "MARDI",
+        "debutH" : 9 ,
+        "debutM" : 15 ,
+        "duree" : 4 ,
+        "groupe" : 1 ,
+        "couleur" : "#d303fc"
+    },
+    {
+        "type" : "TD" ,
+        "matiere" : "IHM" ,
+        "enseignant" : "Ouriel" ,
+        "salle" : "Grand Amphi" ,
+        "jour" : "MARDI",
+        "debutH" : 9 ,
+        "debutM" : 15 ,
+        "duree" : 4 ,
+        "groupe" : 3 ,
+        "couleur" : "#d303fc"
+    },
+    {
+        "type" : "TD" ,
+        "matiere" : "IHM" ,
+        "enseignant" : "Ouriel" ,
+        "salle" : "Grand Amphi" ,
+        "jour" : "MARDI",
+        "debutH" : 9 ,
+        "debutM" : 15 ,
+        "duree" : 4 ,
+        "groupe" : 1 ,
+        "couleur" : "#42e9f5"
+    }
+
+]
