@@ -36,7 +36,7 @@ $role = $_SESSION['role'];
     </form>
 
 <?php
-
+//*************************************    variables    ************************************/
 // Tableau des jours de la semaine
 $jours_semaine = array('LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI');
 
@@ -50,26 +50,8 @@ for ($i = 8; $i < 20; $i++) {
 // Tableau des groupes
 $groupes = array('G1', 'G2', 'G3');
 
-// Affichage du tableau calendrier
-echo '<table>';
 
-// les jours de la semaine
-echo '<thead><tr><th></th>';
-foreach ($jours_semaine as $jour) {
-    echo '<th colspan=3 #87CEEB >' . $jour . '</th>';
-}
-echo '</tr></thead>';
-
-// les groupes
-echo '<tr><td></td>';
-foreach($jours_semaine as $jour) {
-    foreach($groupes as $groupe){
-        echo '<td bgcolor = "#FFA07A">' . $groupe . '</td>';
-    }
-}
-echo '</tr>';
-
-//******************************************fichier json**************************************/
+//*************************************    fichier json    ************************************/
 
 // Charger le fichier JSON en chaîne de caractères
 $jsonString = file_get_contents('json/cours.json');
@@ -101,8 +83,66 @@ foreach ($coursData as $cours) {
             $CdebutH += 1;
         }
     }
-/*     $calendrier[$Cjour][$CdebutH.':'.$CdebutM] = $Cmatiere;
- */}
+
+}
+/********************************************************************************************************** */
+//si admin
+if($role = 'enseignant'){
+    echo '<div id="myModal" class="modal">';
+    echo '<div class="modal-content">';
+        echo '<span class="close">&times;</span>';
+        include 'ajoutCours.php';
+    echo '</div>';
+    echo '</div>';
+    echo '<button id="myBtn">Ajouter un cours</button>';
+}
+?>
+
+<script>
+// Récupérer la fenêtre modale et le bouton qui l'ouvre
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+
+// Récupérer le bouton Fermer
+var span = document.getElementsByClassName("close")[0];
+
+// Ouvrir la fenêtre modale quand l'utilisateur clique sur le bouton
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Fermer la fenêtre modale quand l'utilisateur clique sur le bouton Fermer ou en dehors de la fenêtre
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+<!---------------------------------------------------------------------------------------------------------->
+<?php
+// Affichage du tableau calendrier
+echo '<table>';
+
+// les jours de la semaine
+echo '<thead><tr><th></th>';
+foreach ($jours_semaine as $jour) {
+    echo '<th colspan=3 #87CEEB >' . $jour . '</th>';
+}
+echo '</tr></thead>';
+
+// les groupes
+echo '<tr><td></td>';
+foreach($jours_semaine as $jour) {
+    foreach($groupes as $groupe){
+        echo '<td bgcolor = "#FFA07A">' . $groupe . '</td>';
+    }
+}
+echo '</tr>';
 
 // les horaires
 $i = 0;
@@ -110,11 +150,12 @@ echo '<tbody>';
 foreach ($horaires as $horaire) {
     $color = "#C0C0C0";
     if ($i % 2 == 0) $color = "#FFFFFF";
-    echo '<tr> <td bgcolor = "#BBBBBBB"" >' . $horaire . '</td>';
+    echo '<tr> <td id=creneau bgcolor = "#BBBBBBB"" >' . $horaire . '</td>';
     foreach ($jours_semaine as $jour) {
-        $slot = $calendrier[$jour][$horaire];
 
         for ($col = 0; $col < 3; $col++) {
+            $slot = $calendrier[$jour][$horaire];
+
             $cellContent = '';
             $bgColor = $color;
 
@@ -122,7 +163,7 @@ foreach ($horaires as $horaire) {
             if (is_array($slot) && $slot[2] === -1) {
                 $cellContent = $slot[0];
                 $bgColor = $slot[1];
-                echo '<td colspan="3" bgcolor="' . $bgColor . '">' . $cellContent . '</td>';
+                echo '<td id=creneau colspan="3" bgcolor="' . $bgColor . '">' . $cellContent . '</td>';
                 break;
 
             } else {
@@ -131,7 +172,7 @@ foreach ($horaires as $horaire) {
                     $cellContent = $slot[0];
                     $bgColor = $slot[1];
                 }
-                echo '<td bgcolor="' . $bgColor . '">' . $cellContent . '</td>';
+                echo '<td id=creneau bgcolor="' . $bgColor . '">' . $cellContent . '</td>';
             }
         }
     }
