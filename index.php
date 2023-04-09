@@ -19,13 +19,13 @@ $role = $_SESSION['role'];
   <div class="circulation_dates">
     <?php
     // navigation dates
-    echo "<div class = 'button'>";
-/*     echo "<button type='submit' value='".($_POST['date']-604800)."' class='button' name='date' style='width: 30px; height: 30px;'><img src='images/Bflechedroite.png' style='width: 30px; height: 30px;'></button>";
- */    echo "<button type='submit' value= '".($_POST['date']-604800)."'class='button' name='date'><-</button>";
+/*     echo "<div class = 'button'>";
+    //echo "<button type='submit' value='".($_POST['date']-604800)."' class='button' name='date' style='width: 30px; height: 30px;'><img src='images/Bflechedroite.png' style='width: 30px; height: 30px;'></button>";
+    echo "<button type='submit' value= '".($_POST['date']-604800)."'class='button' name='date'><-</button>";
     echo "Semainier de la semaine du ".date('d/m/Y', $_POST['date'])." au ".date('d/m/Y', $_POST['date']+428400)."";
     echo "<button type='submit' value= '".($_POST['date']+604800)."'class='button' name='date'>-></button>";
-    echo "</div>";
-    echo "Id: ".$id."\n Role: ".$role;
+    echo "</div>";*/
+    echo "Id: ".$id."<br> Role: ".$role; 
     ?>
   </div>
 </head>
@@ -75,19 +75,20 @@ foreach ($coursData as $cours) {
     // Afficher les informations sur le cours
 /*     echo "<p> Type : $Ctype <br> Matière : $Cmatiere <br> Enseignant : $Censeignant <br> Salle : $Csalle <br> Jour : $Cjour <br> Début : $Cdebut <br> Durée : $Cduree <br> Groupe : $Cgroupe </p>";
  */
-    for($i=0; $i<$Cduree; $i++){
-        $calendrier[$Cjour][$CdebutH.':'.$CdebutM] = array($Cmatiere, $Ccouleur, $Cgroupe, $Cduree, $CdebutH, $CdebutM);
+     for($i=0; $i<$Cduree; $i++){
+        $calendrier[$Cjour][$CdebutH.':'.$CdebutM] = array($Cmatiere, $Ccouleur, $Cgroupe, $Cduree, $CdebutH, $CdebutM, $Ctype, $Censeignant, $Csalle);
         $CdebutM += 15;
         if($CdebutM == 60){
             $CdebutM = 0;
             $CdebutH += 1;
         }
     }
+    echo $Cmatiere." ".$Cjour." ".$CdebutH.":".$CdebutM." ".$Cgroupe.'<br>';
+} 
 
-}
 /********************************************************************************************************** */
 //si admin
-if($role = 'enseignant'){
+if($_SESSION['role'] == 'admin'){
     echo '<div id="myModal" class="modal">';
     echo '<div class="modal-content">';
         echo '<span class="close">&times;</span>';
@@ -160,8 +161,8 @@ foreach ($horaires as $horaire) {
             $bgColor = $color;
 
             // Si le créneau est pour les trois groupes (amphi)
-            if (is_array($slot) && $slot[2] === -1) {
-                $cellContent = $slot[0];
+            if (is_array($slot) && $slot[2] === 0) {
+                $cellContent = $slot[0].'<br>'.$slot[8];
                 $bgColor = $slot[1];
                 echo '<td id=creneau colspan="3" bgcolor="' . $bgColor . '">' . $cellContent . '</td>';
                 break;
@@ -178,11 +179,7 @@ foreach ($horaires as $horaire) {
     }
     echo '</tr>';
     $i = $i + 1;
-}
-
-
-/*     echo $calendrier['JEUDI']['9:30'];
- */
+} 
 
 echo '</tbody>';
 echo '</table>';

@@ -8,19 +8,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Décoder la chaîne JSON en tableau associatif PHP
     $coursData = json_decode($jsonString, true);
 
-    // Ajouter le nouveau cours
-    $nouveauCours = array(
-        "type" => $_POST['type'],
-        "matiere" => $_POST['matiere'],
-        "enseignant" => $_POST['enseignant'],
-        "salle" => $_POST['salle'],
-        "jour" => $_POST['jour'],
-        "debutH" => intval($_POST['debutH']),
-        "debutM" => intval($_POST['debutM']),
-        "duree" => intval($_POST['duree']),
-        "groupe" => intval($_POST['groupe']),
-        "couleur" => $_POST['couleur']
-    );
+// Tableau associatif des couleurs par matière
+$couleursMatiere = array(
+    "IAS" => "#F1948A",
+    "WEB" => "#7DCEA0",
+    "PIIA" => "#85C1E9",
+    "LF" => "#F7DC6F",
+    "BDD" => "#D2B4DE",
+    "PFA" => "#FFA07A"
+);
+
+// Ajouter le nouveau cours
+$nouveauCours = array(
+    "type" => $_POST['type'],
+    "matiere" => $_POST['matiere'],
+    "enseignant" => $_POST['enseignant'],
+    "salle" => $_POST['salle'],
+    "jour" => $_POST['jour'],
+    "debutH" => intval($_POST['debutH']),
+    "debutM" => intval($_POST['debutM']),
+    "duree" => intval($_POST['duree']),
+    "groupe" => intval($_POST['groupe']),
+    "couleur" => $couleursMatiere[$_POST['matiere']]
+);
 
     $coursData[] = $nouveauCours;
 
@@ -46,10 +56,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Ajouter un cours</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="type">Type de cours:</label><br>
-        <input type="text" id="type" name="type" required><br>
+        <select id="type" name="type">
+            <option value="AMPHI">Amphi</option>
+            <option value="TP">TP</option>
+            <option value="TD">TD</option>
+        </select><br>
 
         <label for="matiere">Matière:</label><br>
-        <input type="text" id="matiere" name="matiere" required><br>
+<!--         <input type="text" id="matiere" name="matiere" required><br>
+ -->        <select id="matiere" name="matiere">
+            <option value="IAS">IAS</option>
+            <option value="WEB">ProgWeb</option>
+            <option value="PIIA">PIIA</option>
+            <option value="LF">Langages Formels</option>
+            <option value="BDD">BDD</option>
+            <option value="PFA">Projet PFA</option>
+        </select><br>
 
         <label for="enseignant">Enseignant:</label><br>
         <input type="text" id="enseignant" name="enseignant" required><br>
@@ -58,8 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="salle" name="salle" required><br>
 
         <label for="jour">Jour:</label><br>
-<!--         <input type="text" id="jour" name="jour" required><br>
- -->        <select id="jour" name="jour">
+        <select id="jour" name="jour">
             <option value="LUNDI">Lundi</option>
             <option value="MARDI">Mardi</option>
             <option value="MERCREDI">Mercredi</option>
@@ -82,19 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="1">Groupe 1</option>
             <option value="2">Groupe 2</option>
             <option value="3">Groupe 3</option>
-            <option value="-1">Tous les groupes</option>
+            <option value="0">Tous les groupes</option>
 
         </select><br>
-
-        <label for="couleur">Couleur :</label><br>
-        <select id="couleur" name="couleur">
-            <option value="#F1948A">Rouge</option>
-            <option value="#7DCEA0">Vert</option>
-            <option value="#85C1E9">Bleu</option>
-            <option value="#F7DC6F">Jaune</option>
-            <option value="#D2B4DE">Violet</option>
-        </select><br>
-
         <input type="submit" value="Ajouter">
     </form>
 
