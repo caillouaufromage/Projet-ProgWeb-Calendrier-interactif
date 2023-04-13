@@ -1,17 +1,17 @@
 [
     {
-        "id": "a",
-        "mdp": "b",
+        "id": "etd",
+        "mdp": "etd",
         "role": "etudiant"
     },
     {
-        "id": "c",
-        "mdp": "d",
+        "id": "ens",
+        "mdp": "ens",
         "role": "enseignant"
     },
     {
-        "id": "e",
-        "mdp": "f",
+        "id": "adm",
+        "mdp": "adm",
         "role": "admin"
     }
 ]

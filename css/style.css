@@ -2,13 +2,13 @@ table {
     border-collapse: collapse;
 }
 
- td {
+/* td {
     border: 1px solid rgb(150, 150, 150);
     padding: 5px;
     width: 10px;
     height: 2px;
     text-align: center;
-} 
+}  */
 
 th {
     border: 1px solid rgb(124, 124, 124);
@@ -24,11 +24,27 @@ table {
 }
 
 #creneau {
-    height: 10px;
+    height: 1%px;
     width: 10px;
+    border: 1px solid rgb(124, 124, 124);
     text-align: center;
     font-size: 15px;
+}
 
+#groupe {
+    height: 1%px;
+    width: 10px;
+    border: 1px solid rgb(124, 124, 124);
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 2px solid rgb(124, 124, 124);
+    border-right: 2px solid rgb(124, 124, 124);
+}
+
+#jours {
+    border-bottom: 2px solid rgb(124, 124, 124);
+    border-left: 2px solid rgb(124, 124, 124);
+    border-right: 2px solid rgb(124, 124, 124);
 }
 
 
@@ -89,4 +105,18 @@ table {
     width: 100%;
     text-align: center;
     background-color: chartreuse;
+}
+
+#myBtn {
+    float: left;
+    margin: 0 auto;
+    display: block;
+    width: 120px;
+    text-align: center;
+    background-color: rgb(255, 205, 40);
+    border-radius: 4px;
+}
+
+#myBtn:hover {
+    background-color: rgb(255, 196, 0);
 }

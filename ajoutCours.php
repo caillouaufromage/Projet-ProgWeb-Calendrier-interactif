@@ -29,7 +29,9 @@ $nouveauCours = array(
     "debutM" => intval($_POST['debutM']),
     "duree" => intval($_POST['duree']),
     "groupe" => intval($_POST['groupe']),
-    "couleur" => $couleursMatiere[$_POST['matiere']]
+    "couleur" => $couleursMatiere[$_POST['matiere']],
+    "id" => uniqid(),
+    "week_start" => $_POST['week_start'] 
 );
 
     $coursData[] = $nouveauCours;
@@ -54,6 +56,7 @@ $nouveauCours = array(
 </head>
 <body>
     <h1>Ajouter un cours</h1>
+    <div>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <label for="type">Type de cours:</label><br>
         <select id="type" name="type">
@@ -63,8 +66,7 @@ $nouveauCours = array(
         </select><br>
 
         <label for="matiere">Matière:</label><br>
-<!--         <input type="text" id="matiere" name="matiere" required><br>
- -->        <select id="matiere" name="matiere">
+       <select id="matiere" name="matiere">
             <option value="IAS">IAS</option>
             <option value="WEB">ProgWeb</option>
             <option value="PIIA">PIIA</option>
@@ -106,7 +108,13 @@ $nouveauCours = array(
             <option value="0">Tous les groupes</option>
 
         </select><br>
-        <input type="submit" value="Ajouter">
+
+        <label for="week_start">Date de début de semaine:</label><br>
+        <input type="date" id="week_start" name="week_start" required><br>
+        
+        <br>
+        <input type="submit" id=ajoutercoursbouton value="Ajouter">
+        </div>
     </form>
 
     <script>
