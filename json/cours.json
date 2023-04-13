@@ -11,7 +11,8 @@
         "groupe": 3,
         "couleur": "#F1948A",
         "id": "6437683d39360",
-        "week_start": "2023-04-10"
+        "week_start": "2023-04-10",
+        "renouvenable": false
     },
     {
         "type": "AMPHI",
@@ -25,6 +26,52 @@
         "groupe": 3,
         "couleur": "#F1948A",
         "id": "64376aba108a0",
-        "week_start": "2023-04-17"
+        "week_start": "2023-04-17",
+        "renouvenable": false
+    },
+    {
+        "type": "AMPHI",
+        "matiere": "IAS",
+        "enseignant": "d",
+        "salle": "d",
+        "jour": "JEUDI",
+        "debutH": 9,
+        "debutM": 15,
+        "duree": 5,
+        "groupe": 2,
+        "couleur": "#F1948A",
+        "id": "64376f231893a",
+        "week_start": "2023-04-10",
+        "renouvenable": true
+    },
+    {
+        "type": "AMPHI",
+        "matiere": "BDD",
+        "enseignant": "Waller",
+        "salle": "C103",
+        "jour": "MERCREDI",
+        "debutH": 10,
+        "debutM": 0,
+        "duree": 5,
+        "groupe": 1,
+        "couleur": "#D2B4DE",
+        "id": "6437720926f00",
+        "week_start": "2023-04-10",
+        "renouvenable": null
+    },
+    {
+        "type": "AMPHI",
+        "matiere": "LF",
+        "enseignant": "oui",
+        "salle": "D201",
+        "jour": "LUNDI",
+        "debutH": 9,
+        "debutM": 30,
+        "duree": 4,
+        "groupe": 1,
+        "couleur": "#F7DC6F",
+        "id": "643773d0b2174",
+        "week_start": "2023-04-10",
+        "renouvelable": true
     }
 ]

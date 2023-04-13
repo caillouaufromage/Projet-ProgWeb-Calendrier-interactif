@@ -69,8 +69,8 @@ $coursData = json_decode($jsonString, true);
 foreach ($coursData as $cours) {
     $cours_week_start = strtotime(date('Y-m-d', strtotime($cours['week_start'])));
     $display_week_start = strtotime(date('Y-m-d', $week_start));
-    
-    if ($cours_week_start != $display_week_start) {
+    $Crenouvelable = $cours['renouvelable'];
+    if (($Crenouvelable == false) && ($cours_week_start != $display_week_start)) {
         continue;
     }
     $Ctype = $cours['type'];

@@ -18,6 +18,13 @@ $couleursMatiere = array(
     "PFA" => "#FFA07A"
 );
 
+//on voit si le cours est renouvelable (on le met ici parce que je sais pas comment faire autrement)
+if (isset($_POST['repeatWeekly'])) {
+    $renouvelable = true;
+} else {
+    $renouvelable = false;
+}
+
 // Ajouter le nouveau cours
 $nouveauCours = array(
     "type" => $_POST['type'],
@@ -31,7 +38,8 @@ $nouveauCours = array(
     "groupe" => intval($_POST['groupe']),
     "couleur" => $couleursMatiere[$_POST['matiere']],
     "id" => uniqid(),
-    "week_start" => $_POST['week_start'] 
+    "week_start" => $_POST['week_start'],
+    "renouvenable" => $renouvelable
 );
 
     $coursData[] = $nouveauCours;
@@ -58,14 +66,14 @@ $nouveauCours = array(
     <h1>Ajouter un cours</h1>
     <div>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="type">Type de cours:</label><br>
+        <label for="type">Type de cours:</label>
         <select id="type" name="type">
             <option value="AMPHI">Amphi</option>
             <option value="TP">TP</option>
             <option value="TD">TD</option>
         </select><br>
 
-        <label for="matiere">Matière:</label><br>
+        <label for="matiere">Matière:</label>
        <select id="matiere" name="matiere">
             <option value="IAS">IAS</option>
             <option value="WEB">ProgWeb</option>
@@ -75,13 +83,13 @@ $nouveauCours = array(
             <option value="PFA">Projet PFA</option>
         </select><br>
 
-        <label for="enseignant">Enseignant:</label><br>
+        <label for="enseignant">Enseignant:</label>
         <input type="text" id="enseignant" name="enseignant" required><br>
 
-        <label for="salle">Salle:</label><br>
+        <label for="salle">Salle:</label>
         <input type="text" id="salle" name="salle" required><br>
 
-        <label for="jour">Jour:</label><br>
+        <label for="jour">Jour:</label>
         <select id="jour" name="jour">
             <option value="LUNDI">Lundi</option>
             <option value="MARDI">Mardi</option>
@@ -91,16 +99,14 @@ $nouveauCours = array(
 
         </select><br>
 
-        <label for="debutH">Heure de début (heure):</label><br>
-        <input type="number" id="debutH" name="debutH" min="8" max="19" required><br>
+        <label for="debutH">Heure de début:</label>
+        <input type="number" id="debutH" name="debutH" min="8" max="19" required>h 
+        <input type="number" id="debutM" name="debutM" min="0" max="45" step="15" required>min<br>
 
-        <label for="debutM">Heure de début (minutes):</label><br>
-        <input type="number" id="debutM" name="debutM" min="0" max="45" step="15" required><br>
-
-        <label for="duree">Durée (en quart d'heure):</label><br>
+        <label for="duree">Durée (en quart d'heure):</label>
         <input type="number" id="duree" name="duree" min="1" max="16" required><br>
 
-        <label for="groupe">Groupe :</label><br>
+        <label for="groupe">Groupe :</label>
         <select id="groupe" name="groupe">
             <option value="1">Groupe 1</option>
             <option value="2">Groupe 2</option>
@@ -109,8 +115,12 @@ $nouveauCours = array(
 
         </select><br>
 
-        <label for="week_start">Date de début de semaine:</label><br>
-        <input type="date" id="week_start" name="week_start" required><br>
+        <label for="week_start">Date de début de semaine:</label>
+        <input type="date" id="week_start" name="week_start" required>
+
+        <input type="checkbox" id="repeatWeekly" name="repeatWeekly" />
+        <label for="repeatWeekly">Répéter chaque semaine</label>
+
         
         <br>
         <input type="submit" id=ajoutercoursbouton value="Ajouter">
