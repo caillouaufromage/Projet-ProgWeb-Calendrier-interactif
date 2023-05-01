@@ -1,5 +1,4 @@
-# Calendrier interactif
-Projet Programmation Web:
+# Calendrier interactif - Programmation Web
 
 3 utilisateurs possibles:
   - Administrateur [id: adm, mdp: adm] (ajouter/modifier/supprimer des cours)
