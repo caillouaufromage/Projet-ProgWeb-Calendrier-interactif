@@ -5,20 +5,13 @@ if (!isset($_SESSION['logged'])) {
     exit;
 }
 
-// identifiants de connexion
 $id = $_SESSION['id'];
 $role = $_SESSION['role'];
 
-
-if (isset($_GET['week_offset'])) {
-    $week_offset = intval($_GET['week_offset']);
-} else {
-    $week_offset = 0;
-}
+$week_offset = isset($_GET['week_offset']) ? intval($_GET['week_offset']) : 0;
 
 $week_start = strtotime("this week +{$week_offset} week");
 $week_end = strtotime("this week +6 days +{$week_offset} week");
-
 ?>
 
 <!DOCTYPE html>
@@ -26,21 +19,48 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
 <head>
     <title>Calendrier - ProgWeb</title>
     <link rel="stylesheet" href="css/style.css">
-    <div class="circulation_dates">
-        <?php
-        echo "<a href='?week_offset=" . ($week_offset - 1) . "'>Semaine précédente</a> ";
-        echo "Semaine du " . date('d/m/Y', $week_start) . " au " . date('d/m/Y', $week_end) . " ";
-        echo "<a href='?week_offset=" . ($week_offset + 1) . "'>Semaine suivante</a>";
-        echo "<br>Id: ".$id."<br> Role: ".$role;
-        ?>
-    </div>
 </head>
 <body>
-    <form action='log.php' method='post'>
-        <input type='hidden' name='logout' value='true'>
-        <input type='submit' value='Se deconnecter'>
-    </form>
+<body>
+<!-- BANDEAU EN TETE DE PAGE -->
+<div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Informations utilisateur (id + role)-->
+    <?php
+    echo '<img src="images/logo_utilisateur.png" alt="Utilisateur" width="30" height="30">';
+    echo '&nbsp <strong>' . $id . '</strong> (' . strtolower($role) . ')';
+    ?>
 
+    <!-- Circulation des dates -->
+    <div class="circulation_dates">
+        <?php
+        echo "<a href='?week_offset=" . ($week_offset - 1) . "'><img src='images/Bflechedroite.png' alt='<--' width='30' height='30'></a> ";
+        echo "&nbsp;&nbsp;Semaine du " . date('d/m/Y', $week_start) . " au " . date('d/m/Y', $week_end) . "&nbsp;&nbsp;";
+        echo "<a href='?week_offset=" . ($week_offset + 1) . "'><img src='images/Bflechegauche.png' alt='-->' width='30' height='30'></a> ";
+        ?>
+    </div>
+
+    <!-- Bouton Ajouter un cours (si admin) -->
+    <?php
+    //si admin
+    if($_SESSION['role'] == 'admin'){
+        echo '<div id="myModal" class="modal">';
+        echo '<div class="modal-content">';
+            echo '<span class="close">&times;</span>';
+            include 'ajoutCours.php';
+        echo '</div>';
+        echo '</div>';
+        
+        echo '<button id="myBtn" style="border: none; background: none; padding: 0; margin-right: 5px; cursor: pointer;"><img src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></button>';
+    }
+    ?>
+    <!-- Bouton de déconnexion -->
+    <form action="log.php" method="post" style="margin: 0;">
+        <input type="hidden" name="logout" value="true">
+        <input type="image" src="images/logo_deconnexion.png" alt="Se déconnecter" title="Se déconnecter" width="30" height="30">
+    </form>
+</div>
+
+    
 <?php
 //*************************************    variables    ************************************/
 // Tableau des jours de la semaine
@@ -102,7 +122,7 @@ foreach ($coursData as $cours) {
 
 
 /********************************************************************************************************** */
-//si admin
+/* //si admin
 if($_SESSION['role'] == 'admin'){
     echo '<div id="myModal" class="modal">';
     echo '<div class="modal-content">';
@@ -110,8 +130,10 @@ if($_SESSION['role'] == 'admin'){
         include 'ajoutCours.php';
     echo '</div>';
     echo '</div>';
-    echo '<button id="myBtn">Ajouter un cours</button>';
-}
+    //echo '<input type="image" src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" id="myBtn" width="30" height="30">';
+    
+    echo '<button id="myBtn" style="border: none; background: none; padding: 0;"><img src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></button>';
+} */
 ?>
 
 <script>
@@ -137,8 +159,38 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
 </script>
+
+<!-- <script>
+// Récupérer la fenêtre modale et le bouton qui l'ouvre
+var modal = document.getElementById("myModal2");
+var btn = document.getElementById("myBtn");
+
+// Récupérer le bouton Fermer
+var span = document.getElementsByClassName("close")[0];
+
+// Ouvrir la fenêtre modale quand l'utilisateur clique sur le bouton
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Fermer la fenêtre modale quand l'utilisateur climyModalque sur le bouton Fermer ou en dehors de la fenêtre
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function showModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+  modal.style.zIndex = 9999; /* Valeur élevée pour afficher la fenêtre modale au-dessus des autres éléments */
+}
+</script> -->
 <!---------------------------------------------------------------------------------------------------------->
 <?php
 // Affichage du tableau calendrier
@@ -177,34 +229,38 @@ foreach ($horaires as $horaire) {
             $cellContent = '';
             $bgColor = $color;
 
+
             if (isset($rowspan_remaining[$jour][$groupe]) && $rowspan_remaining[$jour][$groupe] > 0) {
                 // Ne pas afficher le contenu de la cellule si un rowspan est en cours
                 $rowspan_remaining[$jour][$groupe]--;
             } else {
                 if (is_array($slot)) {
-                    $cellContent = $slot[0].'<br>'.$slot[3].'<br>'.$slot[4].'<br>'.$slot[5];
-                    $bgColor = $slot[2];
+                    /* $cellContent = '<button class="cours-button" style="background-color:'.$slot[2].'" data-cours=\''.json_encode($slot).'\'>'
+                        .$slot[0].'<br>'.$slot[3].'<br>'.$slot[4].'<br>'.$slot[5].'</button>';
+                     */
+                    $cellContent = '<button class="cours-button" style="background-color:'.$slot[2].'" onclick="showModal()" data-cours=\''.json_encode($slot).'\'>'
+                        .$slot[0].'<br>'.$slot[3].'<br>'.$slot[4].'<br>'.$slot[5].'</button>';
                     if($groupe == 0){
-                        echo '<td id="creneau" bgcolor="' . $bgColor . '" rowspan="' . $slot[1] . '" colspan="3">' . $cellContent . '</td>';
+                        echo '<td id="creneau" bgcolor="' . $slot[2] . '" rowspan="' . $slot[1] . '" colspan="3">' . $cellContent . '</td>';
                         $rowspan_remaining[$jour][$groupe] = $slot[1] - 1;
                         break;
                     } else {
-                        echo '<td id="creneau" bgcolor="' . $bgColor . '" rowspan="' . $slot[1] . '">' . $cellContent . '</td>';
+                        if($_SESSION['role'] == 'admin') echo '<td id="creneau" bgcolor="' . $slot[2] . '" rowspan="' . $slot[1] . '"><a href="modifCours.php?id='.$slot[6].'">' .$cellContent. '</td></a>';
+                        else echo '<td id="creneau" bgcolor="' . $slot[2] . '" rowspan="' . $slot[1] . '">' . $cellContent . '</td>';
                         $rowspan_remaining[$jour][$groupe] = $slot[1] - 1;
                     }
                 } else {
                     if ($groupe != 0) {
-                        echo '<td id=creneau bgcolor="' . $bgColor . '"></td>';
+                        echo '<td id=creneau bgcolor="' . $color . '"></td>';
                     }
-                }
+                }          
             }
+            
         }
     }
     echo '</tr>';
     $i = $i + 1;
 }
-
-
 
 
 echo '</tbody>';

@@ -47,12 +47,7 @@ table {
     border-right: 2px solid rgb(124, 124, 124);
 }
 
-
-/* centre le titre du calendendrier */
-#circulation_dates {
-    text-align: center;
-}
-
+  
 .custom-text-size {
     font-size: 20px;
 }
@@ -69,16 +64,21 @@ table {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
+    border-radius: 4px;
   }
   
   /* Style pour le contenu de la fenêtre modale */
   .modal-content {
-    background-color: #fff;
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);      
     margin: 15% auto;
+    margin-left: 20%;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
-  }
+    border-radius: 15px;
+}
+
   
   /* Style pour le bouton Fermer */
   .close {
@@ -104,7 +104,7 @@ table {
     display: block;
     width: 100%;
     text-align: center;
-    background-color: chartreuse;
+    background-color: rgb(6, 172, 0);
 }
 
 #myBtn {
@@ -119,4 +119,53 @@ table {
 
 #myBtn:hover {
     background-color: rgb(255, 196, 0);
+}
+
+.buttons-container {
+    background-color: #0074D9;
+    padding: 10px;
+  }
+  
+  .buttons-container form, .buttons-container button {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .buttons-container form input[type="submit"] {
+    background-color: #FF4136;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .buttons-container button {
+    background-color: #2ECC40;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+
+/* bandeau du haut (id + ajouterCours + deco) */
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff87ff; /* Couleur violette */
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* circulation : (fleches + dates) */
+  .circulation_dates {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+
 }

@@ -2,47 +2,24 @@
 // Vérifier que le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// Charger le fichier JSON en chaîne de caractères
-$jsonString = file_get_contents('json/cours.json');
+    // Charger le fichier JSON en chaîne de caractères
+    $jsonString = file_get_contents('json/cours.json');
 
-// Décoder la chaîne JSON en tableau associatif PHP
-$coursData = json_decode($jsonString, true);
+    // Décoder la chaîne JSON en tableau associatif PHP
+    $coursData = json_decode($jsonString, true);
 
-// Tableau associatif des couleurs par matière
-$couleursMatiere = array(
-    "IAS" => "#F1948A",
-    "WEB" => "#7DCEA0",
-    "PIIA" => "#85C1E9",
-    "LF" => "#F7DC6F",
-    "BDD" => "#D2B4DE",
-    "PFA" => "#FFA07A"
-);
-
-//on voit si le cours est renouvelable (on le met ici parce que je sais pas comment faire autrement)
-if (isset($_POST['repeatWeekly'])) {
-    $renouvelable = true;
-} else {
-    $renouvelable = false;
+// Mettre à jour le cours correspondant à l'ID dans le tableau $coursData
+foreach ($coursData as $key => $cours) {
+    if ($cours['id'] == $_POST['id']) {
+        // Mettre à jour les propriétés du cours avec les valeurs soumises
+        // Ici, vous pouvez ajouter toutes les propriétés que vous souhaitez mettre à jour
+        print("id trouvé!");
+        $coursData[$key] = array_merge($coursData[$key], $_POST);
+        break;
+    }
 }
 
-// Ajouter le nouveau cours
-$nouveauCours = array(
-    "type" => $_POST['type'],
-    "matiere" => $_POST['matiere'],
-    "enseignant" => $_POST['enseignant'],
-    "salle" => $_POST['salle'],
-    "jour" => $_POST['jour'],
-    "debutH" => intval($_POST['debutH']),
-    "debutM" => intval($_POST['debutM']),
-    "duree" => intval($_POST['duree']),
-    "groupe" => intval($_POST['groupe']),
-    "couleur" => $couleursMatiere[$_POST['matiere']],
-    "id" => uniqid(),
-    "week_start" => $_POST['week_start'],
-    "renouvelable" => $renouvelable
-);
 
-    $coursData[] = $nouveauCours;
 
     // Encoder le tableau associatif PHP en chaîne JSON
     $nouveauJsonString = json_encode($coursData, JSON_PRETTY_PRINT);
@@ -53,10 +30,33 @@ $nouveauCours = array(
     // Rediriger vers la page d'accueil
     header('Location: index.php');
     exit();
-}else{
-    print("Erreur : Impossible d'ajouter le cours");
+} else {
+    // Charger le fichier JSON en chaîne de caractères
+    $jsonString = file_get_contents('json/cours.json');
+
+    // Décoder la chaîne JSON en tableau associatif PHP
+    $coursData = json_decode($jsonString, true);
+
+// Trouver le cours à modifier
+$coursAModifier = null;
+foreach ($coursData as $cours) {
+    if ($cours['id'] == $_POST['id']) {
+        $coursAModifier = $cours;
+        break;
+    }
+}
+
+
+    if ($coursAModifier) {
+        // Afficher le formulaire de modification ici avec les informations du cours à modifier
+        // Par exemple, vous pouvez inclure un fichier PHP contenant le formulaire HTML
+        include('modifCoursForm.php');
+    } else {
+        echo "Erreur : Le cours avec l'ID " . $_GET['id'] . " n'a pas été trouvé.";
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -125,11 +125,11 @@ $nouveauCours = array(
 
         
         <br>
-        <input type="submit" id=ajoutercoursbouton value="Ajouter">
+        <input type="submit" id=ajoutercoursbouton value="Ajouter" href="index.php">
         </div>
     </form>
 
-    <script>
+<!--     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -155,7 +155,7 @@ $nouveauCours = array(
                 modal.style.display = "none";
             }
         }
-    </script>
+    </script> -->
 </body>
 </html>
 
