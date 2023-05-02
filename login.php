@@ -1,15 +1,17 @@
 <DOCTYPE html>
-<html lang="en">
-<head>
+    <html lang="en">
 
-</head>
-<body>
+    <head>
 
-</body>
+    </head>
+
+    <body>
+
+    </body>
 
 
 
-<!-- <!DOCTYPE html>
+    <!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,45 +40,45 @@
             <a href="#">CALENDAR<b></b></a>
         </div>
         <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Log in to start your session</p>
-                <form id="login-form">
-                    <div class="input-group mb-3">
-                        <input type="text" maxlength="50" name="user_login" class="form-control"
-                            placeholder="Email or Login id" required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Log in to start your session</p>
+            <form id="login-form">
+                <div class="input-group mb-3">
+                    <input type="text" maxlength="50" name="user_login" class="form-control"
+                        placeholder="Email or Login id" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="user_pass" class="form-control" maxlength="15"
-                            placeholder="Password" required>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock password-toggler"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="user_pass" class="form-control" maxlength="15" placeholder="Password"
+                        required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock password-toggler"></span>
                         </div>
                     </div>
+                </div>
+                <div>
                     <div>
-                        <div>
-                            <button type="submit" id="btn-submit" class="btn btn-primary btn-block">Log In</button>
-                        </div>
-                        <!-- /.col -->
+                        <button type="submit" id="btn-submit" class="btn btn-primary btn-block">Log In</button>
                     </div>
-                </form>
+                    <!-- /.col -->
+                </div>
+            </form>
 
-                <!-- <p class="mb-1">
+            <!-- <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p> -->
-                <p class="mb-0 mt-3">
-                    <a href="register.php" class="text-center">Register a new membership</a>
-                </p>
-            </div>
-            <!-- /.login-card-body -->
+            <p class="mb-0 mt-3">
+                <a href="register.php" class="text-center">Register a new membership</a>
+            </p>
         </div>
+        <!-- /.login-card-body -->
+    </div>
     </div>
     <!-- /.login-box -->
 
@@ -151,6 +153,6 @@
         })
     </script>
 
-</body>
+    </body>
 
-</html>
+    </html>

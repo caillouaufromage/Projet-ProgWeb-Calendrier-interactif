@@ -58,17 +58,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/stylelog.css">
 </head>
+
 <body>
     <div id="login-form-wrap">
         <h2>Inscription</h2>
         <?php if (isset($error)): ?>
-            <p class="error"><?php echo $error ?></p>
+            <p class="error">
+                <?php echo $error ?>
+            </p>
         <?php endif ?>
         <form id="login-form" method="post">
             <p>
@@ -84,8 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             </p>
         </form>
         <div id="create-account-wrap">
-        <p>Déjà inscrit?? <a href="log.php">Connectez vous!</a></p>
-      </div><!--create-account-wrap-->
+            <p>Déjà inscrit?? <a href="log.php">Connectez vous!</a></p>
+        </div><!--create-account-wrap-->
     </div><!--login-form-wrap-->
 </body>
+
 </html>
