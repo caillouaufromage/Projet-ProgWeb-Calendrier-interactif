@@ -8,10 +8,12 @@ if (!isset($_SESSION['logged'])) {
 $id = $_SESSION['id'];
 $role = $_SESSION['role'];
 
-$week_offset = isset($_GET['week_offset']) ? intval($_GET['week_offset']) : 0;
+$month_offset = isset($_GET['month_offset']) ? intval($_GET['month_offset']) : 0;
 
-$week_start = strtotime("this week +{$week_offset} week");
-$week_end = strtotime("this week +6 days +{$week_offset} week");
+$moisActuel = date('F Y', strtotime("{$month_offset} month"));
+
+$moisPrecedent = date('Y-m', strtotime("{$month_offset} month -1 month"));
+$moisSuivant = date('Y-m', strtotime("{$month_offset} month +1 month"));
 ?>
 
 <!DOCTYPE html>
@@ -36,14 +38,15 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
     echo '&nbsp <strong>' . $id . '</strong> (' . strtolower($role) . ')';
     ?>
 
-    <!-- Circulation des dates -->
-    <div class="circulation_dates">
-        <?php
-        echo "<a href='?week_offset=" . ($week_offset - 1) . "'><img src='images/Bflechedroite.png' alt='<--' width='30' height='30'></a> ";
-        echo "&nbsp;&nbsp;Semaine du " . date('d/m/Y', $week_start) . " au " . date('d/m/Y', $week_end) . "&nbsp;&nbsp;";
-        echo "<a href='?week_offset=" . ($week_offset + 1) . "'><img src='images/Bflechegauche.png' alt='-->' width='30' height='30'></a> ";
-        ?>
-    </div>
+<!-- Circulation des dates -->
+<div class="circulation_dates">
+    <?php
+
+    echo "<a href='?month_offset=" . ($month_offset - 1) . "'><img src='images/Bflechedroite.png' alt='<--' width='30' height='30'></a> ";
+    echo "&nbsp;&nbsp;" . $moisActuel . "&nbsp;&nbsp;";
+    echo "<a href='?month_offset=" . ($month_offset + 1) . "'><img src='images/Bflechegauche.png' alt='-->' width='30' height='30'></a> ";
+    ?>
+</div>
 
     <!-- Bouton Ajouter un cours (si admin) -->
     <?php
@@ -59,11 +62,13 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
     }
     ?>
 
-<!-- Bouton de changement de vue -->
-<a href="indexMois.php" style="margin-right:15px;">
-    <img src="images/logo_vue.png" alt="Changer de vue" title="Changer de vue" width="35" height="30">
-</a>
-
+    <!-- Bouton de changement de vue -->
+    <form action="index.php" method="post" style="margin: 0;">
+        <input type="hidden" name="vueCalendrier" value="vueMois">
+        <button type="submit" style="border: none; background: none; padding: 0; margin-right:15px; cursor: pointer;">
+            <img src="images/logo_vue.png" alt="Changer de vue" title="Changer de vue" width="35" height="30">
+        </button>
+    </form>
 
 
     <!-- Bouton de déconnexion -->
@@ -79,16 +84,6 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
 <?php
 // Tableau des jours de la semaine
 $jours_semaine = array('LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI');
-
-// Tableau des horaires par quart d'heure
-$horaires = array();
-for ($i = 8; $i < 20; $i++) {
-    for ($j = 0; $j < 4; $j++) {
-        $horaires[] = $i . ':' . ($j * 15);
-    }
-}
-
-
 
 // Tableau des groupes
 $groupes = array('G1', 'G2', 'G3');
@@ -124,23 +119,18 @@ foreach ($coursData as $cours) {
     $Cgroupe = $cours['groupe'];
     $Ccouleur = $cours['couleur'];
     $Cid = $cours['id'];
-    $Csemaine = $cours['week_start'];
 
     // Afficher les informations sur le cours
     // echo "<p> Type : $Ctype <br> Matière : $Cmatiere <br> Enseignant : $Censeignant <br> Salle : $Csalle <br> Jour : $Cjour <br> Début : $Cdebut <br> Durée : $Cduree <br> Groupe : $Cgroupe </p>";
  
-    for($i=0; $i<$Cduree; $i++){
-        if(($Cduree - $i) == $Cduree) $premiereHeure = true;
-        else $premiereHeure = false; 
-        $calendrier[$Cjour][$Cgroupe][$CdebutH.':'.$CdebutM] = array($Cmatiere, $Cduree-$i, $Ccouleur, $Ctype, $Censeignant, $Csalle, $Cid, $Csemaine, $premiereHeure);
+       for($i=0; $i<$Cduree; $i++){
+        $calendrier[$Cjour][$Cgroupe][$CdebutH.':'.$CdebutM] = array($Cmatiere, $Cduree-$i, $Ccouleur, $Ctype, $Censeignant, $Csalle, $Cid);
         $CdebutM += 15;
         if($CdebutM == 60){
             $CdebutM = 0;
             $CdebutH += 1;
-        }
+        } 
     } 
-    //$calendrier[$Cjour][$Cgroupe][$CdebutH.':'.$CdebutM] = array($Cmatiere, $Cduree, $Ccouleur, $Ctype, $Censeignant, $Csalle, $Cid, $Csemaine);
-
 }  
 
 
@@ -182,8 +172,8 @@ window.onclick = function(event) {
     if(isset($_GET['vueCalendrier'])){
         $vueCalendrier = $_GET['vueCalendrier'];
     } else {
-        $vueCalendrier = 'vueSemaine';
-        //$vueCalendrier = 'vueMois';
+        //$vueCalendrier = 'vueSemaine';
+        $vueCalendrier = 'vueMois';
     }
     switch ($vueCalendrier) {
         case 'vueSemaine':

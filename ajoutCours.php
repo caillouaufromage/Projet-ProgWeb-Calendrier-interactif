@@ -53,8 +53,6 @@ $nouveauCours = array(
     // Rediriger vers la page d'accueil
     header('Location: index.php');
     exit();
-}else{
-    print("Erreur : Impossible d'ajouter le cours");
 }
 ?>
 
@@ -114,7 +112,7 @@ $nouveauCours = array(
             <option value="2">Groupe 2</option>
             <option value="3">Groupe 3</option>
             <option value="0">Tous les groupes</option>
-
+            
         </select><br>
 
         <label for="week_start">Date de début de semaine:</label>
@@ -124,7 +122,7 @@ $nouveauCours = array(
         <label for="repeatWeekly">Répéter chaque semaine</label>
 
         
-        <br>
+        <br><br><br>
         <input type="submit" id=ajoutercoursbouton value="Ajouter">
         </div>
     </form>
