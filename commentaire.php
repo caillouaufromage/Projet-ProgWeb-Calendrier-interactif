@@ -44,7 +44,7 @@ if ($id_cours) {
         </head>
 
         <body>
-            <form action="Commentaire.php?id=<?php echo $id_cours; ?>" method="post">
+            <form action="commentaire.php?id=<?php echo $id_cours; ?>" method="post">
                 <h1>commentaire du cours</h1>
                 <br><br>
                 <label>
@@ -66,7 +66,7 @@ if ($id_cours) {
                         echo '<p><img src="images/logo_utilisateurComm.png" width=30px; height=30px;> &nbsp;' . $commentaire . "</p><br>";
                     }
                 } else { //s'il n'y en a pas on le signale!
-                    echo "<p>Aucun commentaire pour ce cours</p> :(";
+                    echo "<p>Aucun commentaire pour ce cours :-( </p>";
                 }
 
                 echo '<br><br>';

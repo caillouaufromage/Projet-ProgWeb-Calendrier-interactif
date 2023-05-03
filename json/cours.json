@@ -14,7 +14,10 @@
         "week_start": "2023-05-01",
         "commentaireAdm": "",
         "renouvelable": true,
-        "repeatWeekly": "on"
+        "repeatWeekly": "on",
+        "commentaires": [
+            "<b>[etudiant]&nbsp;etd<\/b>: test"
+        ]
     },
     {
         "type": "TD",
@@ -45,8 +48,14 @@
         "couleur": "#D2B4DE",
         "id": "645244bddbb18",
         "week_start": "2023-05-01",
-        "commentaireAdm": "",
-        "renouvelable": true
+        "commentaireAdm": "Cette semaine, revision en vue des exams",
+        "renouvelable": true,
+        "repeatWeekly": "on",
+        "commentaires": [
+            "<b>[admin]&nbsp;adm<\/b>: n'oubliez pas de ramener vos ordinateurs!",
+            "<b>[etudiant]&nbsp;etd<\/b>: monsieur je n'ai pas de pc? Comment je fais?",
+            "<b>[admin]&nbsp;adm<\/b>: tu en ach\u00e8tes un"
+        ]
     },
     {
         "type": "TP",
@@ -196,7 +205,7 @@
     },
     {
         "type": "AMPHI",
-        "matiere": "IAS",
+        "matiere": "ANGLAIS",
         "enseignant": "Dyja",
         "salle": "Bat. Eiffel",
         "jour": "LUNDI",
@@ -208,7 +217,8 @@
         "id": "6452488d85c22",
         "week_start": "2023-05-01",
         "commentaireAdm": "",
-        "renouvelable": true
+        "renouvelable": true,
+        "repeatWeekly": "on"
     },
     {
         "type": "TP",

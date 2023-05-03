@@ -134,3 +134,39 @@ input[type="password"] {
   background-color: #f44336;
   color: #fff;
 }
+
+
+/* STATISTIQUES : tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+/* les bordures du tableau */
+th,
+td {
+  border: 1px solid #063317;
+  padding: 8px;
+  text-align: left;
+}
+
+/* l'en tete */
+th {
+  background-color: #18beb1;
+  font-weight: bold;
+}
+
+/* une case sur deux en blanc */
+tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+/* une case sur deux en gris */
+tr:nth-child(odd) {
+  background-color: #c7c7c7;
+}
+/* petit effet stylax */
+tr:hover {
+  background-color: #ddd;
+}

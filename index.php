@@ -47,11 +47,11 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
         </div>
 
         <!-- Bouton Ajouter un cours (si admin) -->
+        <a href="stat.php" style="margin-right: 15px;"><img width="30px" height="30px" src="images/logo_stat.png"></a>
+
+        <!-- vue statistiques de chaque cours -->
         <?php
-        // redirection vers une autre page
-        if($_SESSION['role'] == 'admin'){
-            echo '<a style="margin-right:15px" href="ajoutCours.php"><img src="images/logo_plusCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></a>';
-        }
+        echo '<a style="margin-right:15px" href="ajoutCours.php"><img src="images/logo_plusCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></a>';
         ?>
 
         <!-- Bouton de déconnexion -->

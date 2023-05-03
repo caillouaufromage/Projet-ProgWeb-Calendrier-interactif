@@ -18,5 +18,10 @@
         "id": "eleve1",
         "mdp": "elev",
         "role": "etudiant"
+    },
+    {
+        "id": "Didier",
+        "mdp": "motdepasse",
+        "role": "etudiant"
     }
 ]
