@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <h1>Modifier un cours</h1>
+<h1><img src="images/logo_modifCours.png" width=50px height=50px>&nbsp;Modifier un cours&nbsp;<img src="images/logo_modifCours.png" width=50px height=50px></h1>
     <div>
         <form action="modifCoursEns.php" method="post">
             <input type="hidden" id="id" name="id" value="<?php echo $coursAModifier['id']; ?>">
@@ -78,7 +78,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label>Date de début de semaine: <?php echo $coursAModifier['week_start']; ?></label><br>
             
+            <!-- BOUTON VALIDER -->
             <input type="submit" id="modifiercoursbouton" value="Modifier">
+
+            <!-- Bouton de retour au calendrier -->
+            <input type="button" id="retourcalendrier" value="Retour au calendrier" onclick="location.href='index.php'">
+
         </form>
     </div>
 </body>

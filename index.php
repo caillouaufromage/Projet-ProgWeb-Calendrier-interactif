@@ -33,22 +33,24 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
     <div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
         <!-- Informations utilisateur (id + role)-->
         <?php
-        echo '<img src="images/logo_utilisateur.png" alt="Utilisateur" width="30" height="30">';
+        echo '<img src="images/logo_utilisateurComm.png" alt="Utilisateur" width="30" height="30">';
         echo '&nbsp <strong>' . $id . '&nbsp</strong> (' . strtolower($role) . ')';
         ?>
 
         <!-- Circulation des dates -->
         <div class="circulation_dates">
             <?php
-            echo "<a href='?week_offset=" . ($week_offset - 1) . "'><img src='images/Bflechedroite.png' alt='<--' width='30' height='30'></a> ";
+            echo "<a href='?week_offset=" . ($week_offset - 1) . "'><img id=flecheG src='images/flecheG.png' alt='<--' width='30' height='30'></a> ";
             echo "&nbsp;&nbsp;Semaine du " . date('d/m/Y', $week_start) . " au " . date('d/m/Y', $week_end) . "&nbsp;&nbsp;";
-            echo "<a href='?week_offset=" . ($week_offset + 1) . "'><img src='images/Bflechegauche.png' alt='-->' width='30' height='30'></a> ";
+            echo "<a href='?week_offset=" . ($week_offset + 1) . "'><img src='images/flecheD.png' alt='-->' width='30' height='30'></a> ";
             ?>
         </div>
 
         <!-- Bouton Ajouter un cours (si admin) -->
         <?php
-        if ($_SESSION['role'] == 'admin') {
+
+        // Premiere idee : fenetre modale, abandonee car pas pratique a implementer sur le reste des boutons
+        /* if ($_SESSION['role'] == 'admin') {
             echo '<div id="myModal" class="modal">';
             echo '<div class="modal-content">';
             echo '<span class="close">&times;</span>';
@@ -57,20 +59,23 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
             echo '</div>';
 
             echo '<button id="myBtn" style="border: none; background: none; padding: 0; margin-right: 5px; cursor: pointer;"><img src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></button>';
+        } */
+
+        //idee finale : redirection vers une autre page
+        if($_SESSION['role'] == 'admin'){
+            echo '<a style="margin-right:15px" href="ajoutCours.php"><img src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></a>';
         }
         ?>
 
         <!-- Bouton de changement de vue -->
         <a href="indexMois.php" style="margin-right:15px;">
-            <img src="images/logo_vue.png" alt="Changer de vue" title="Changer de vue" width="40" height="30">
+            <img src="images/logo_vueDiff.png" alt="Changer de vue" title="Changer de vue" width="35" height="35">
         </a>
-
-
 
         <!-- Bouton de déconnexion -->
         <form action="log.php" method="post" style="margin: 0;">
             <input type="hidden" name="logout" value="true">
-            <input type="image" src="images/logo_deconnexion.png" alt="Se déconnecter" title="Se déconnecter" width="30"
+            <input type="image" src="images/logo_logout.png" alt="Se déconnecter" title="Se déconnecter" width="30"
                 height="30">
         </form>
     </div>
@@ -89,7 +94,7 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
             $horaires[] = $i . ':' . ($j * 15);
         }
     }
-    
+
     // Tableau des groupes
     $groupes = array('G1', 'G2', 'G3');
 

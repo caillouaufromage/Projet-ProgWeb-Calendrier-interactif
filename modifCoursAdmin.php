@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </head>
 
         <body>
-            <h1>Modifier un cours</h1>
+            <h1><img src="images/logo_modifCours.png" width=50px height=50px>&nbsp;Modifier un cours&nbsp;<img src="images/logo_modifCours.png" width=50px height=50px></h1>
             <div>
                 <form action="modifCoursAdmin.php" method="post">
                     <input type="hidden" id="id" name="id" value="<?php echo $coursAModifier['id']; ?>">
@@ -124,12 +124,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="date" id="week_start" name="week_start" value="<?php echo $coursAModifier['week_start']; ?>"
                         required>
 
+                    <!-- LES COMMENTAIRES!!! -->
+                    <label for="commentaireAdm">Commentaires:</label>
+                    <input type="text" id="commentaireAdm" name="commentaireAdm" value="<?php echo $coursAModifier['commentaireAdm']; ?>"
+                        required>
+
                     <!-- REPETER CHAQUE SEMAINE -->
                     <input type="checkbox" id="repeatWeekly" name="repeatWeekly" <?php echo ($coursAModifier['repeatWeekly'] == true) ? 'checked' : ''; ?> />
                     <label for="repeatWeekly">Répéter chaque semaine</label>
                     
                     <!-- BOUTON VALIDER ! -->
                     <input type="submit" id="modifiercoursbouton" value="Modifier">
+
+                    <!-- Bouton de retour au calendrier -->
+                    <input type="button" id="retourcalendrier" value="Retour au calendrier" onclick="location.href='index.php'">
+            
             </div>
             </div>
             </form>

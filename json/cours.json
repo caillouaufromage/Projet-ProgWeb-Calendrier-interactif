@@ -13,7 +13,24 @@
         "id": "64511b45d789a",
         "week_start": "2023-05-01",
         "renouvelable": true,
-        "commentaire": ""
+        "commentaireAdm": "",
+        "commentaires": [
+            "genial ce cours!",
+            "bof, je ne recommande pas",
+            "je suis d'accord avec toi, c'est nul!",
+            "nouveau commentaire !",
+            "\u00e7a marche!",
+            "\u00e7a marche!",
+            "nouevau",
+            "nouevau",
+            "nouevau",
+            "nouevau",
+            "nouevau",
+            "nouevau",
+            "nouevau",
+            "nouevau",
+            "<b>[admin]&nbsp;adm<\/b>: yes!"
+        ]
     },
     {
         "type": "AMPHI",
@@ -29,7 +46,21 @@
         "id": "64511b695e37b",
         "week_start": "2023-05-01",
         "renouvelable": true,
-        "commentaire": ""
+        "commentaireAdm": "",
+        "commentaires": [
+            "genial ce cours!",
+            "bof, je ne recommande pas",
+            "je suis d'accord avec toi, c'est nul!",
+            ":test avec le pseudo!",
+            ":test avec le pseudo!",
+            ":test",
+            ":test",
+            ":test",
+            ": bdzjd",
+            ": bdzjd",
+            ": aa",
+            "etd: aa"
+        ]
     },
     {
         "type": "TP",
@@ -45,6 +76,58 @@
         "id": "64511b9921e9f",
         "week_start": "2023-05-01",
         "renouvelable": false,
-        "commentaire": "BLABLABLA JE SUIS UN COMMENTAIRE"
+        "commentaireAdm": "BLABLABLA JE SUIS UN COMMENTAIRE",
+        "commentaires": [
+            "genial ce cours!",
+            "bof, je ne recommande pas",
+            "je suis d'accord avec toi, c'est nul!",
+            "etd: petit test des familles",
+            "<b>etd<\/b>: petit test des familles",
+            "<b>etd<\/b>: petit test des familles",
+            "<b>etd<\/b>: petit test des familles",
+            "<b>etd<\/b>: petit test des familles",
+            "<b>etd<\/b>: petit test des familles",
+            "<b>[etudiant]etd<\/b>: petit test des familles",
+            "<b>[etudiant]&nbsp;etd<\/b>: petit test des familles",
+            "<b>[enseignant]&nbsp;ens<\/b>: je suis un professeur VENER!",
+            "<b>[admin]&nbsp;adm<\/b>: peut \u00eatre, mais moi je suis admin donc ratio :D"
+        ]
+    },
+    {
+        "type": "AMPHI",
+        "matiere": "WEB",
+        "enseignant": "Vernier",
+        "salle": "D202",
+        "jour": "LUNDI",
+        "debutH": "10",
+        "debutM": "15",
+        "duree": "5",
+        "groupe": "0",
+        "couleur": "#7DCEA0",
+        "id": "645173901c666",
+        "week_start": "2023-05-01",
+        "commentaireAdm": "Ceci est mon tout premier commentaire, j'espere que \u00e7a fonctionnera!",
+        "renouvelable": false,
+        "commentaires": [
+            "nul ce cours!",
+            "super, je recommande!",
+            "je suis d'accord avec toi, c'est excellent!"
+        ]
+    },
+    {
+        "type": "TP",
+        "matiere": "PIIA",
+        "enseignant": "Landes",
+        "salle": "E203",
+        "jour": "JEUDI",
+        "debutH": 10,
+        "debutM": 15,
+        "duree": 7,
+        "groupe": 3,
+        "couleur": "#85C1E9",
+        "id": "64519e0e69c9b",
+        "week_start": "2023-05-01",
+        "commentaireAdm": "aucun comm",
+        "renouvelable": false
     }
 ]

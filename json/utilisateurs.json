@@ -13,5 +13,10 @@
         "id": "adm",
         "mdp": "adm",
         "role": "admin"
+    },
+    {
+        "id": "eleve1",
+        "mdp": "elev",
+        "role": "etudiant"
     }
 ]

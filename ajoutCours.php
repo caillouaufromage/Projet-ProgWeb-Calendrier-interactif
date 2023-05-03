@@ -39,6 +39,7 @@ $nouveauCours = array(
     "couleur" => $couleursMatiere[$_POST['matiere']],
     "id" => uniqid(),
     "week_start" => $_POST['week_start'],
+    "commentaireAdm" => $_POST['commentaireAdm'],
     "renouvelable" => $renouvelable
 );
 
@@ -60,20 +61,23 @@ $nouveauCours = array(
 <html>
 <head>
     <title>Ajouter un cours - ProgWeb</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleModifCours.css">
 </head>
 <body>
-    <h1>Ajouter un cours</h1>
+    <h1><img src="images/logo_nouveauCours.png" width=50px height=50px>&nbsp;Ajouter un cours&nbsp;<img src="images/logo_nouveauCours.png" width=50px height=50px></h1>
     <div>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+        <!-- LE TYPE DE COURS -->
         <label for="type">Type de cours:</label>
         <select id="type" name="type">
             <option value="AMPHI">Amphi</option>
             <option value="TP">TP</option>
             <option value="TD">TD</option>
-        </select><br>
+        </select>
 
-        <label for="matiere">Matière:</label>
+        <!-- LA MATIERE -->
+       <label for="matiere">Matière:</label>
        <select id="matiere" name="matiere">
             <option value="IAS">IAS</option>
             <option value="WEB">ProgWeb</option>
@@ -81,13 +85,14 @@ $nouveauCours = array(
             <option value="LF">Langages Formels</option>
             <option value="BDD">BDD</option>
             <option value="PFA">Projet PFA</option>
-        </select><br>
+        </select>
 
+         <!-- L'ENSEIGNANT -->
         <label for="enseignant">Enseignant:</label>
-        <input type="text" id="enseignant" name="enseignant" required><br>
+        <input type="text" id="enseignant" name="enseignant" required>
 
         <label for="salle">Salle:</label>
-        <input type="text" id="salle" name="salle" required><br>
+        <input type="text" id="salle" name="salle" required>
 
         <label for="jour">Jour:</label>
         <select id="jour" name="jour">
@@ -97,14 +102,19 @@ $nouveauCours = array(
             <option value="JEUDI">Jeudi</option>
             <option value="VENDREDI">Vendredi</option>
 
-        </select><br>
+        </select>
 
+        <!-- L'HEURE DE DEBUT -->
         <label for="debutH">Heure de début:</label>
-        <input type="number" id="debutH" name="debutH" min="8" max="19" required>h 
-        <input type="number" id="debutM" name="debutM" min="0" max="45" step="15" required>min<br>
+        <div class="heure-debut">
+        <input type="number" id="debutH" name="debutH" min="8" max="19" required>
+        <span>h</span>
+        <input type="number" id="debutM" name="debutM" min="0" max="45" step="15" required>
+        <span>min</span>
+        </div>
 
         <label for="duree">Durée (en quart d'heure):</label>
-        <input type="number" id="duree" name="duree" min="1" max="16" required><br>
+        <input type="number" id="duree" name="duree" min="1" max="16" required>
 
         <label for="groupe">Groupe :</label>
         <select id="groupe" name="groupe">
@@ -113,21 +123,27 @@ $nouveauCours = array(
             <option value="3">Groupe 3</option>
             <option value="0">Tous les groupes</option>
             
-        </select><br>
+        </select>
 
         <label for="week_start">Date de début de semaine:</label>
         <input type="date" id="week_start" name="week_start" required>
 
+        <label for="enseignant">Commentaires:</label>
+        <input type="text" id="commentaireAdm" name="commentaireAdm">
+
         <input type="checkbox" id="repeatWeekly" name="repeatWeekly" />
         <label for="repeatWeekly">Répéter chaque semaine</label>
 
-        
         <br><br><br>
         <input type="submit" id=ajoutercoursbouton value="Ajouter">
+
+        <!-- Bouton de retour au calendrier -->
+        <input type="button" id="retourcalendrier" value="Retour au calendrier" onclick="location.href='index.php'">
+
         </div>
     </form>
 
-    <script>
+<!--     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -153,7 +169,7 @@ $nouveauCours = array(
                 modal.style.display = "none";
             }
         }
-    </script>
+    </script> -->
 </body>
 </html>
 

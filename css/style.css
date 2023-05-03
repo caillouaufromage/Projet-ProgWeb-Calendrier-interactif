@@ -4,6 +4,7 @@ table {
 
 body {
   font-family: 'Inter';
+  background-color: rgb(43, 43, 43);
 }
 
 /* td {
@@ -19,13 +20,14 @@ td {
 }
 
 th {
-  border: 1px solid rgb(124, 124, 124);
+  border: 2px solid rgb(14, 10, 70);
   padding: 5px;
-  background-color: #17a397;
+  background-color: rgb(122, 186, 242);
   text-align: center;
+  max-width: 10px;
+  width: 10px;
 }
 
-/* le tableau prend toute la page et est centré */
 table {
   width: 100%;
   margin: 0 auto;
@@ -34,25 +36,27 @@ table {
 #creneau {
   height: 1%px;
   width: 10px;
+  max-width: 25px;
   border: 1px solid rgb(124, 124, 124);
   text-align: center;
   font-size: 15px;
 }
 
+
 #groupe {
-  height: 1%px;
+  height: 1px;
   width: 10px;
   border: 1px solid rgb(124, 124, 124);
   text-align: center;
   font-size: 15px;
-  border-bottom: 2px solid rgb(124, 124, 124);
-  border-right: 2px solid rgb(124, 124, 124);
+  border: 2px solid rgb(14, 10, 70);
+  border: 2px solid rgb(14, 10, 70);
 }
 
 #jours {
-  border-bottom: 2px solid rgb(124, 124, 124);
-  border-left: 2px solid rgb(124, 124, 124);
-  border-right: 2px solid rgb(124, 124, 124);
+/*   border-bottom: 2px solid rgb(210, 54, 0);
+  border-left: 2px solid rgb(210, 54, 0);
+  border-right: 2px solid rgb(210, 54, 0); */
 }
 
 
@@ -61,7 +65,8 @@ table {
 }
 
 
-/* Style pour la fenêtre modale */
+ /* Style pour la fenêtre modale */
+/*
 .modal {
   display: none;
   position: fixed;
@@ -73,9 +78,10 @@ table {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
-}
+}*/
 
 /* Style pour le contenu de la fenêtre modale */
+/*
 .modal-content {
   background-color: #D9AFD9;
   background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
@@ -86,9 +92,10 @@ table {
   width: 50%;
   border-radius: 15px;
 }
-
+*/
 
 /* Style pour le bouton Fermer */
+/*
 .close {
   color: #aaa;
   float: right;
@@ -106,7 +113,7 @@ table {
 .modal-content p {
   text-align: center;
 }
-
+*/
 #ajoutercoursbouton {
   margin: 0 auto;
   display: block;
@@ -125,7 +132,7 @@ table {
   width: 100%;
   height: 100%;
 }
-
+/*
 #myBtn {
   float: left;
   margin: 0 auto;
@@ -138,7 +145,7 @@ table {
 
 #myBtn:hover {
   background-color: rgb(255, 196, 0);
-}
+}*/
 
 .buttons-container {
   background-color: #0074D9;
@@ -174,7 +181,7 @@ table {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #71c259;
+  background-color: rgb(41, 128, 185); 
   /* Couleur violette */
   padding: 10px;
   border-top-left-radius: 8px;
@@ -192,3 +199,6 @@ table {
 
 }
 
+.flecheG:hover {
+  background-image: url(images/Bflechegauche.png);
+}

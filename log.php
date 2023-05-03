@@ -1,5 +1,6 @@
 <?php
-session_start(); // added this line
+session_start();
+
 if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: log.php');
@@ -42,46 +43,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $error = "Autre erreur.";
+    $error = "ERREUR :(";
 
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/stylelog.css">
+    <h1>Connexion</h1>
+    <link rel="stylesheet" href="css/styleModifCours.css">
 </head>
 
 <body>
-    <div id="login-form-wrap">
-        <h2>Connexion</h2>
-        <?php if (isset($error)): ?>
-            <p class="error">
-                <?php echo $error ?>
-            </p>
-        <?php endif ?>
-        <form id="login-form" method="post">
-            <p>
-                <input type="text" id="id" name="id" placeholder="identifiant" required>
-                <i class="validation"><span></span><span></span></i>
-            </p>
-            <p>
-                <input type="password" id="mdp" name="mdp" placeholder="mot de passe" required>
-                <i class="validation"><span></span><span></span></i>
-            </p>
-            <p>
-                <input type="submit" id="login" value="Login">
-            </p>
-        </form>
-        <div id="create-account-wrap">
-            <p>Pas encore inscrit? <a href="sub.php">Créez un compte!</a></p>
-        </div><!--create-account-wrap-->
-    </div><!--login-form-wrap-->
-</body>
+        <?php
+        // s'il y a une erreur, on l'affiche
+        if (isset($error)) {
+            echo '<div class="error">' . $error . '</div>';
+        }
+        ?>
 
+        <form id="login-form" method="post">
+            <!-- IDENTIFIANT -->
+            <input type="text" id="id" name="id" placeholder="identifiant" required>
+
+            <!-- MOT DE PASSE -->
+            <input type="password" id="mdp" name="mdp" placeholder="mot de passe" required>
+
+            <br>
+            <!-- BOUTON DE CONNEXION -->
+            <input type="submit" id="login" value="Se connecter">
+
+            <!-- Bouton de l'inscription -->
+            <input type="submit" id="sub" value="Créez un compte" onclick="location.href='sub.php'">
+
+        </form>
+</body>
 </html>
