@@ -1,11 +1,31 @@
 # Calendrier interactif - Programmation Web
 
-3 utilisateurs possibles:
-  - Administrateur [id: adm, mdp: adm] (ajouter/modifier/supprimer des cours)
-  - Enseignants [id: ens, mdp: ens] (modifier les horaires des cours)
-  - Etudiants [id: etd, mdp: etd] (aucuns droits :'( )
+Calendrier collaboratif accessible par plusieurs utilisateurs
 
-Un persona disponible pour chaque Rôle !
-  - [id: adm, mdp: adm] Sandrine D., administratice du calendrier en ligne
-  - [id: ens, mdp: ens] Frederic V., professeur de l'option Programmation Web
-  - [id: etd, mdp: etd] Pierre, modèste étudiant en informatique à l'université Paris-Saclay
+## Utilisateurs :
+
+- Administrateur : ajouter/modifier/supprimer des cours
+```
+id: adm, mdp: adm
+```
+- Enseignants : modifier les horaires des cours
+```
+id: ens, mdp: ens
+```
+- Etudiants : aucuns droits :'( 
+```
+id: etd, mdp: etd
+```
+
+## Fonctionnalités implémentées
+
+- page de connexion et de création de compte (avec messages d'erreur)
+- bouton de deconnexion
+- naviguer à travers les semaines du calendrier
+
+LES COURS :
+- creation de cours / modification de cours
+- faire répéter un cours indéfiniment
+- un espace commentaire pour chaque cours (j'en suis pas peu fier)
+
+##
