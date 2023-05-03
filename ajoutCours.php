@@ -1,3 +1,5 @@
+<!-- AJOUTER UN COURS (role : administrateur) -->
+
 <?php
 // Vérifier que le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,7 +17,8 @@ $couleursMatiere = array(
     "PIIA" => "#85C1E9",
     "LF" => "#F7DC6F",
     "BDD" => "#D2B4DE",
-    "PFA" => "#FFA07A"
+    "PFA" => "#ff7df4",
+    "ANGLAIS" => "#cfc699"
 );
 
 //on voit si le cours est renouvelable (on le met ici parce que je sais pas comment faire autrement)
@@ -64,9 +67,9 @@ $nouveauCours = array(
     <link rel="stylesheet" href="css/styleModifCours.css">
 </head>
 <body>
-    <h1><img src="images/logo_nouveauCours.png" width=50px height=50px>&nbsp;Ajouter un cours&nbsp;<img src="images/logo_nouveauCours.png" width=50px height=50px></h1>
+    <h1><img src="images/logo_nouveauCours.png" width=25px height=25px>&nbsp;Ajouter un cours&nbsp;<img src="images/logo_nouveauCours.png" width=25px height=25px></h1>
     <div>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="ajoutCours.php" method="post">
 
         <!-- LE TYPE DE COURS -->
         <label for="type">Type de cours:</label>
@@ -85,15 +88,19 @@ $nouveauCours = array(
             <option value="LF">Langages Formels</option>
             <option value="BDD">BDD</option>
             <option value="PFA">Projet PFA</option>
+            <option value="ANGLAIS">Anglais</option>
+
         </select>
 
          <!-- L'ENSEIGNANT -->
         <label for="enseignant">Enseignant:</label>
         <input type="text" id="enseignant" name="enseignant" required>
 
+        <!-- LA SALLE -->
         <label for="salle">Salle:</label>
         <input type="text" id="salle" name="salle" required>
 
+        <!-- LE JOUR -->
         <label for="jour">Jour:</label>
         <select id="jour" name="jour">
             <option value="LUNDI">Lundi</option>
@@ -101,7 +108,6 @@ $nouveauCours = array(
             <option value="MERCREDI">Mercredi</option>
             <option value="JEUDI">Jeudi</option>
             <option value="VENDREDI">Vendredi</option>
-
         </select>
 
         <!-- L'HEURE DE DEBUT -->
@@ -113,28 +119,33 @@ $nouveauCours = array(
         <span>min</span>
         </div>
 
+        <!-- LA DUREE -->
         <label for="duree">Durée (en quart d'heure):</label>
         <input type="number" id="duree" name="duree" min="1" max="16" required>
 
+        <!-- LE GROUPE -->
         <label for="groupe">Groupe :</label>
         <select id="groupe" name="groupe">
             <option value="1">Groupe 1</option>
             <option value="2">Groupe 2</option>
             <option value="3">Groupe 3</option>
             <option value="0">Tous les groupes</option>
-            
         </select>
 
+        <!-- LA DATE DE DEBUT DE SEMAINE -->
         <label for="week_start">Date de début de semaine:</label>
         <input type="date" id="week_start" name="week_start" required>
 
+        <!-- LE COMMENTAIRE DE L'ADMIN -->
         <label for="enseignant">Commentaires:</label>
         <input type="text" id="commentaireAdm" name="commentaireAdm">
 
+        <!-- REPETITION DU COURS -->
         <input type="checkbox" id="repeatWeekly" name="repeatWeekly" />
         <label for="repeatWeekly">Répéter chaque semaine</label>
 
         <br><br><br>
+        <!-- BOUTON VALIDER -->
         <input type="submit" id=ajoutercoursbouton value="Ajouter">
 
         <!-- Bouton de retour au calendrier -->
@@ -142,34 +153,6 @@ $nouveauCours = array(
 
         </div>
     </form>
-
-<!--     <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script> -->
 </body>
 </html>
 

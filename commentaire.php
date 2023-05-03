@@ -12,11 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $id_cours) {
             if ($c['id'] == $id_cours) {
                 $id_utilisateur = $_SESSION['id']; // on stocke le pseudo de l'utilisateur, ça fera des commentaires stylés
                 $role_utilisateur = $_SESSION['role']; // on stocke le role de l'utilisateur, ça fera des commentaires stylés (bis)
-                $c['commentaires'][] = "<b>[". $role_utilisateur ."]&nbsp;". $id_utilisateur."</b>: ".$commentaire;
+                $c['commentaires'][] = "<b>[" . $role_utilisateur . "]&nbsp;" . $id_utilisateur . "</b>: " . $commentaire;
                 break;
             }
         }
-
         $newJsonString = json_encode($coursData);
         file_put_contents('json/cours.json', $newJsonString);
     }
@@ -25,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $id_cours) {
 if ($id_cours) {
     $jsonString = file_get_contents('json/cours.json');
     $coursData = json_decode($jsonString, true);
-
     $cours = null;
+
     foreach ($coursData as $c) {
         if ($c['id'] == $id_cours) {
             $cours = $c;
@@ -35,7 +34,6 @@ if ($id_cours) {
     }
 
     if ($cours) {
-
         ?>
         <!DOCTYPE html>
         <html>
@@ -46,7 +44,6 @@ if ($id_cours) {
         </head>
 
         <body>
-
             <form action="Commentaire.php?id=<?php echo $id_cours; ?>" method="post">
                 <h1>commentaire du cours</h1>
                 <br><br>

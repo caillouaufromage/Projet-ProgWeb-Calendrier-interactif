@@ -27,10 +27,10 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
 </head>
 
 <body>
-    <!---------------------------------------------------------------------------------------------------------->
-    <!--                                    BANDEAU EN TETE DE PAGE                                           -->
-    <!---------------------------------------------------------------------------------------------------------->
-    <div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+<!---------------------------------------------------------------------------------------------------------->
+<!--                                    BANDEAU EN TETE DE PAGE                                           -->
+<!---------------------------------------------------------------------------------------------------------->
+<div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
         <!-- Informations utilisateur (id + role)-->
         <?php
         echo '<img src="images/logo_utilisateurComm.png" alt="Utilisateur" width="30" height="30">';
@@ -48,29 +48,11 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
 
         <!-- Bouton Ajouter un cours (si admin) -->
         <?php
-
-        // Premiere idee : fenetre modale, abandonee car pas pratique a implementer sur le reste des boutons
-        /* if ($_SESSION['role'] == 'admin') {
-            echo '<div id="myModal" class="modal">';
-            echo '<div class="modal-content">';
-            echo '<span class="close">&times;</span>';
-            include 'ajoutCours.php';
-            echo '</div>';
-            echo '</div>';
-
-            echo '<button id="myBtn" style="border: none; background: none; padding: 0; margin-right: 5px; cursor: pointer;"><img src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></button>';
-        } */
-
-        //idee finale : redirection vers une autre page
+        // redirection vers une autre page
         if($_SESSION['role'] == 'admin'){
-            echo '<a style="margin-right:15px" href="ajoutCours.php"><img src="images/logo_ajouterCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></a>';
+            echo '<a style="margin-right:15px" href="ajoutCours.php"><img src="images/logo_plusCours.png" alt="Ajouter un cours" title="Ajouter un cours" width="30" height="30"></a>';
         }
         ?>
-
-        <!-- Bouton de changement de vue -->
-        <a href="indexMois.php" style="margin-right:15px;">
-            <img src="images/logo_vueDiff.png" alt="Changer de vue" title="Changer de vue" width="35" height="35">
-        </a>
 
         <!-- Bouton de déconnexion -->
         <form action="log.php" method="post" style="margin: 0;">
@@ -89,7 +71,7 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
 
     // Tableau des horaires par quart d'heure
     $horaires = array();
-    for ($i = 8; $i < 20; $i++) {
+    for ($i = 8; $i < 18; $i++) {
         for ($j = 0; $j < 4; $j++) {
             $horaires[] = $i . ':' . ($j * 15);
         }
@@ -145,65 +127,17 @@ $week_end = strtotime("this week +6 days +{$week_offset} week");
                 $CdebutM = 0;
                 $CdebutH += 1;
             }
-        }
-        //$calendrier[$Cjour][$Cgroupe][$CdebutH.':'.$CdebutM] = array($Cmatiere, $Cduree, $Ccouleur, $Ctype, $Censeignant, $Csalle, $Cid, $Csemaine);
-    
+        }    
     }
 
 
     ?>
 
-    <!----------------------------------------------------------------------------------------------------------->
-    <!--                                              JAVASCRIPT                                               -->
-    <!----------------------------------------------------------------------------------------------------------->
-    <script>
-        // Récupérer la fenêtre modale et le bouton qui l'ouvre
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("myBtn");
-
-        // Récupérer le bouton Fermer
-        var span = document.getElementsByClassName("close")[0];
-
-        // Ouvrir la fenêtre modale quand l'utilisateur clique sur le bouton
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-
-        // Fermer la fenêtre modale quand l'utilisateur clique sur le bouton Fermer ou en dehors de la fenêtre
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-
     <!---------------------------------------------------------------------------------------------------------->
     <!--                                      AFFICHAGE CALENDRIER                                            -->
     <!---------------------------------------------------------------------------------------------------------->
     <?php
-
-    if (isset($_GET['vueCalendrier'])) {
-        $vueCalendrier = $_GET['vueCalendrier'];
-    } else {
-        $vueCalendrier = 'vueSemaine';
-        //$vueCalendrier = 'vueMois';
-    }
-    switch ($vueCalendrier) {
-        case 'vueSemaine':
-            include 'vues/vueSemaine.php';
-            break;
-        case 'vueMois':
-            include 'vues/vueMois.php';
-            break;
-        default:
-            print('Erreur : vueCalendrier invalide');
-            // include 'vues/vueSemaine.php';
-            break;
-    }
+        include 'vues/vueSemaine.php';
     ?>
 
 </body>

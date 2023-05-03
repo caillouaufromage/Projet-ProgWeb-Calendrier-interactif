@@ -1,3 +1,5 @@
+<!-- MODIFIER UN COURS (admin) -->
+
 <?php
 // Charger le fichier JSON en chaîne de caractères
 $jsonString = file_get_contents('json/cours.json');
@@ -5,12 +7,33 @@ $jsonString = file_get_contents('json/cours.json');
 // Décoder la chaîne JSON en tableau associatif PHP
 $coursData = json_decode($jsonString, true);
 
+// Tableau associatif des couleurs par matière
+$couleursMatiere = array(
+    "IAS" => "#F1948A",
+    "WEB" => "#7DCEA0",
+    "PIIA" => "#85C1E9",
+    "LF" => "#F7DC6F",
+    "BDD" => "#D2B4DE",
+    "PFA" => "#ff7df4",
+    "ANGLAIS" => "#cfc699"
+);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mettre à jour le cours correspondant à l'ID dans le tableau $coursData
     foreach ($coursData as $key => $cours) {
         if ($cours['id'] == $_POST['id']) {
             // Mettre à jour les propriétés du cours avec les valeurs soumises
             $coursData[$key] = array_merge($coursData[$key], $_POST);
+
+            // Mettre à jour la couleur du cours en fonction de la matière sélectionnée
+            $coursData[$key]['couleur'] = $couleursMatiere[$_POST['matiere']];
+
+            // Mettre à jour la propriété renouvelable
+            if (isset($_POST['repeatWeekly'])) {
+                $coursData[$key]['renouvelable'] = true;
+            } else {
+                $coursData[$key]['renouvelable'] = false;
+            }
             break;
         }
     }
@@ -46,7 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </head>
 
         <body>
-            <h1><img src="images/logo_modifCours.png" width=50px height=50px>&nbsp;Modifier un cours&nbsp;<img src="images/logo_modifCours.png" width=50px height=50px></h1>
+            <h1><img src="images/logo_modifCours.png" width=25px height=25px>&nbsp;Modifier un cours&nbsp;<img
+                    src="images/logo_modifCours.png" width=25px height=25px></h1>
             <div>
                 <form action="modifCoursAdmin.php" method="post">
                     <input type="hidden" id="id" name="id" value="<?php echo $coursAModifier['id']; ?>">
@@ -63,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="matiere">Matière:</label>
                     <select id="matiere" name="matiere">
                         <?php
-                        $matieres = ['IAS', 'WEB', 'PIIA', 'LF', 'BDD', 'PFA'];
+                        $matieres = ['IAS', 'WEB', 'PIIA', 'LF', 'BDD', 'PFA', 'ANGLAIS'];
                         foreach ($matieres as $matiere) {
                             $selected = ($coursAModifier['matiere'] == $matiere) ? 'selected' : '';
                             echo "<option value='{$matiere}' {$selected}>{$matiere}</option>";
@@ -73,8 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <!-- L'ENSEIGNANT -->
                     <label for="enseignant">Enseignant:</label>
-                    <input type="text" id="enseignant" name="enseignant" value="<?php echo $coursAModifier['enseignant']; ?>"
-                        required>
+                    <input type="text" id="enseignant" name="enseignant" value="<?php echo $coursAModifier['enseignant']; ?>">
 
                     <!-- LA SALLE -->
                     <label for="salle">Salle:</label>
@@ -95,9 +118,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- L'HEURE DE DEBUT -->
                     <label for="debutH">Heure de début:</label>
                     <div class="heure-debut">
-                        <input type="number" id="debutH" name="debutH" value="<?php echo $coursAModifier['debutH']; ?>" min="8" max="19" required>
+                        <input type="number" id="debutH" name="debutH" value="<?php echo $coursAModifier['debutH']; ?>" min="8"
+                            max="19" required>
                         <span>h</span>
-                        <input type="number" id="debutM" name="debutM" value="<?php echo $coursAModifier['debutM']; ?>" min="0" max="45" step="15" required>
+                        <input type="number" id="debutM" name="debutM" value="<?php echo $coursAModifier['debutM']; ?>" min="0"
+                            max="45" step="15" required>
                         <span>min</span>
                     </div>
 
@@ -126,19 +151,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <!-- LES COMMENTAIRES!!! -->
                     <label for="commentaireAdm">Commentaires:</label>
-                    <input type="text" id="commentaireAdm" name="commentaireAdm" value="<?php echo $coursAModifier['commentaireAdm']; ?>"
-                        required>
+                    <input type="text" id="commentaireAdm" name="commentaireAdm"
+                        value="<?php echo $coursAModifier['commentaireAdm']; ?>">
 
                     <!-- REPETER CHAQUE SEMAINE -->
-                    <input type="checkbox" id="repeatWeekly" name="repeatWeekly" <?php echo ($coursAModifier['repeatWeekly'] == true) ? 'checked' : ''; ?> />
+                    <input type="checkbox" id="repeatWeekly" name="repeatWeekly" <?php echo ($coursAModifier['renouvelable'] == true) ? 'checked' : ''; ?> />
                     <label for="repeatWeekly">Répéter chaque semaine</label>
-                    
+
                     <!-- BOUTON VALIDER ! -->
                     <input type="submit" id="modifiercoursbouton" value="Modifier">
 
                     <!-- Bouton de retour au calendrier -->
                     <input type="button" id="retourcalendrier" value="Retour au calendrier" onclick="location.href='index.php'">
-            
+
             </div>
             </div>
             </form>

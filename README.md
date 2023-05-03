@@ -1,6 +1,6 @@
 # Calendrier interactif - Programmation Web
-
-Calendrier collaboratif accessible par plusieurs utilisateurs
+## Objectif:
+Projet de l'option ProgWeb du second semestre de L3 Info. L'objectif est de code un calendrier collaboratif accessible par plusieurs utilisateurs. Nous pouvons utiliser HTML, CSS, PHP, JS...
 
 ## Ma config:
 Je fais tourner mon site sans problème grâce à un serveur LAMP direct sur mon Pc!
@@ -30,5 +30,3 @@ id: etd, mdp: etd
 - faire répéter un cours indéfiniment
 - un espace commentaire pour chaque cours (j'en suis pas peu fier)
 - et d'autres !
-
-##
