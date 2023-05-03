@@ -2,6 +2,10 @@
 
 Calendrier collaboratif accessible par plusieurs utilisateurs
 
+## Ma config:
+Je fais tourner mon site sans problème grâce à un serveur LAMP direct sur mon Pc!
+La dernière fois que j'ai essayé de faire tourner (en ssh) mes fichiers sur le serveur de la fac, ça a eu l'air de planter...
+
 ## Utilisateurs :
 
 - Administrateur : ajouter/modifier/supprimer des cours
@@ -22,10 +26,9 @@ id: etd, mdp: etd
 - page de connexion et de création de compte (avec messages d'erreur)
 - bouton de deconnexion
 - naviguer à travers les semaines du calendrier
-
-LES COURS :
 - creation de cours / modification de cours
 - faire répéter un cours indéfiniment
 - un espace commentaire pour chaque cours (j'en suis pas peu fier)
+- et d'autres !
 
 ##
